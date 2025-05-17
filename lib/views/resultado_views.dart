@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import '../controllers/anio_controller.dart';
 
 class ResultadoViews extends StatelessWidget {
-  final _controller = AnioController();  
+  final _controller = AnioController();
+  TextEditingController _anioC = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final orientacion = MediaQuery.of(context).orientation;
-    final lista = _controller.obtenerUltimos(2024);
+    final args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final int anio = args['anio'];
+    final lista = _controller.obtenerUltimos(anio);
 
     return Scaffold(
       appBar: AppBar(title: Text('Lista de años bisiestos')),
